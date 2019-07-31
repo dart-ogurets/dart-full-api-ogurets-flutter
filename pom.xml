@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.bluetrainsoftware.example</groupId>
+	<artifactId>example-reactor</artifactId>
+	<version>1.1.1</version>
+	<packaging>pom</packaging>
+
+	<url>https://featurehub.io</url>
+	<developers>
+		<developer>
+			<email>irinasouthwell@gmail.com</email>
+			<id>isouthwell</id>
+			<name>Irina Southwell (Капрельянц Ирина)</name>
+			<!--      <organization></organization>-->
+		</developer>
+		<developer>
+			<email>richard@bluetrainsoftware.com</email>
+			<id>rvowles</id>
+			<name>Richard Vowles</name>
+			<organization>Blue Train Software Ltd</organization>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>api</module>
+		<module>java-server</module>
+		<module>dart_api</module>
+	</modules>
+</project>
