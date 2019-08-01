@@ -9,53 +9,72 @@
 
 	<properties>
 		<grizzly.version>2.4.4</grizzly.version>
-		<grizzly.npn.version>1.9</grizzly.npn.version>
 		<jersey.version>2.28</jersey.version>
+    <jackson.version>2.8.7</jackson.version>
+    <log4j.version>2.8.2</log4j.version>
+    <lmax.disruptor>3.3.6</lmax.disruptor>
+    <swagger.version>1.5.13</swagger.version>
 	</properties>
 
 	<dependencies>
+    <!-- openapi support -->
 		<dependency>
 			<groupId>cd.connect.openapi.gensupport</groupId>
 			<artifactId>openapi-generator-support</artifactId>
 			<version>1.1</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.bluetrainsoftware.bathe</groupId>
-			<artifactId>bathe-booter</artifactId>
-			<version>[2.1,3)</version>
-		</dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>${swagger.version}</version>
+    </dependency>
 
-		<dependency>
-			<groupId>cd.connect.common</groupId>
-			<artifactId>connect-app-lifecycle</artifactId>
-			<version>[1.1, 2)</version>
-		</dependency>
+    <!-- jersey support -->
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet-core</artifactId>
+      <version>[${jersey.version}]</version>
+    </dependency>
 
-		<dependency>
-			<groupId>cd.connect.common</groupId>
-			<artifactId>connect-app-declare-config</artifactId>
-			<version>[1.1, 2)</version>
-		</dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.media</groupId>
+      <artifactId>jersey-media-multipart</artifactId>
+      <version>[${jersey.version}]</version>
+    </dependency>
 
-		<dependency>
-			<groupId>cd.connect.composites.java</groupId>
-			<artifactId>connect-composite-jersey</artifactId>
-			<version>1.3</version>
-		</dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.media</groupId>
+      <artifactId>jersey-media-json-jackson</artifactId>
+      <version>[${jersey.version}]</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>jackson-annotations</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jackson-jaxrs-base</artifactId>
+          <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jackson-jaxrs-json-provider</artifactId>
+          <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 
-		<dependency>
-			<groupId>cd.connect.common</groupId>
-			<artifactId>connect-java-logging-log4j2</artifactId>
-			<version>[1.2, 2)</version>
-		</dependency>
+    <dependency>
+      <groupId>org.glassfish.hk2</groupId>
+      <artifactId>hk2-api</artifactId>
+      <version>2.5.0</version>
+    </dependency>
 
-		<dependency>
-			<groupId>cd.connect.jersey</groupId>
-			<artifactId>jersey-common</artifactId>
-			<version>1.1</version>
-		</dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.inject</groupId>
+      <artifactId>jersey-hk2</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
 
+    <!-- grizzly for jersey, can use netty as well -->
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-grizzly2-http</artifactId>
@@ -74,83 +93,153 @@
 			<version>${grizzly.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.glassfish.grizzly</groupId>
-			<artifactId>grizzly-http2</artifactId>
-			<version>${grizzly.version}</version>
-		</dependency>
+    <!-- jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>[${jackson.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>[${jackson.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>[${jackson.version}]</version>
+    </dependency>
 
-		<dependency>
-			<groupId>org.glassfish.grizzly</groupId>
-			<artifactId>grizzly-npn-bootstrap</artifactId>
-			<version>${grizzly.npn.version}</version>
-		</dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>[${jackson.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-base</artifactId>
+      <version>[${jackson.version}]</version>
+    </dependency>
 
-		<dependency>
-			<groupId>org.glassfish.grizzly</groupId>
-			<artifactId>grizzly-npn-api</artifactId>
-			<version>${grizzly.npn.version}</version>
-		</dependency>
+    <!-- logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>[1.7.25]</version>
+    </dependency>
 
-		<dependency>
-			<groupId>cd.connect.jersey</groupId>
-			<artifactId>connect-jersey-grizzly</artifactId>
-			<version>[1.1, 2)</version>
-		</dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>[${log4j.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>[${log4j.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>[${log4j.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-1.2-api</artifactId>
+      <version>[${log4j.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-jul</artifactId>
+      <version>[${log4j.version}]</version>
+    </dependency>
+    <dependency>
+      <groupId>com.lmax</groupId>
+      <artifactId>disruptor</artifactId>
+      <version>[${lmax.disruptor}]</version>
+    </dependency>
 
-		<dependency>
-			<groupId>com.bluetrainsoftware.bathe.initializers</groupId>
-			<artifactId>system-property-loader</artifactId>
-			<version>3.1</version>
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.bluetrainsoftware.bathe.initializers</groupId>
-			<artifactId>jul-bridge</artifactId>
-			<version>2.1</version>
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<version>[1.7.25]</version>
-		</dependency>
-
-		<dependency>
-			<groupId>cd.connect.composites.java</groupId>
-			<artifactId>connect-composite-test</artifactId>
-			<version>[1.1, 2)</version>
-			<scope>test</scope>
-		</dependency>
+    <!-- java 11+ requirements -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-core</artifactId>
+      <version>2.3.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>2.3.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.activation</groupId>
+      <artifactId>activation</artifactId>
+      <version>1.1.1</version>
+    </dependency>
 	</dependencies>
+
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.google.cloud.tools</groupId>
+            <artifactId>jib-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <executions>
+              <execution>
+                <id>docker-build</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>buildTar</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <allowInsecureRegistries>false</allowInsecureRegistries>
+              <from>
+                <image>openjdk:11.0.3-jdk-slim-stretch</image>
+              </from>
+              <to>
+                <image>dart-ogurets/${project.artifactId}</image>
+              </to>
+              <container>
+                <mainClass>com.bluetrainsoftware.example.server.Application</mainClass>
+                <jvmFlags>
+                  <jvmFlag>--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED</jvmFlag>
+                  <jvmFlag>-Dio.netty.tryReflectionSetAccessible=true</jvmFlag>
+                  <jvmFlag>--add-opens=java.base/java.nio=ALL-UNNAMED</jvmFlag>
+                </jvmFlags>
+                <ports>
+                  <port>8076</port>
+                </ports>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 	<build>
 		<finalName>app</finalName>
 		<plugins>
-			<plugin>
-				<groupId>io.repaint.maven</groupId>
-				<artifactId>tiles-maven-plugin</artifactId>
-				<version>2.10</version>
-				<extensions>true</extensions>
-				<configuration>
-					<filtering>false</filtering>
-					<tiles>
-						<tile>cd.connect.tiles:tile-java:[1.2, 2)</tile>
-					</tiles>
-				</configuration>
-			</plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>11</release>
+          <source>11</source>
+          <target>11</target>
+          <executable>javac11</executable>
+          <useIncrementalCompilation>false</useIncrementalCompilation>
+        </configuration>
+      </plugin>
 
 			<plugin>
 				<groupId>org.openapitools</groupId>
@@ -160,7 +249,7 @@
 					<dependency>
 						<groupId>cd.connect.openapi</groupId>
 						<artifactId>connect-openapi-jersey2</artifactId>
-						<version>4.5</version>
+						<version>4.7</version>
 					</dependency>
 				</dependencies>
 				<executions>
@@ -207,25 +296,6 @@
 							<sources>
 								<source>${project.build.directory}/generated-sources/api/src/gen</source>
 							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>com.bluetrainsoftware.maven</groupId>
-				<artifactId>bathe-plugin</artifactId>
-				<version>2.7</version>
-				<extensions>true</extensions>
-				<executions>
-					<execution>
-						<id>default</id>
-						<phase>package</phase>
-						<goals>
-							<goal>time</goal>
-						</goals>
-						<configuration>
-							<jumpClass>com.bluetrainsoftware.example.server.Application</jumpClass>
 						</configuration>
 					</execution>
 				</executions>

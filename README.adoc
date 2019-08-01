@@ -4,6 +4,8 @@ Once completed, this is intended to be a full working example
 of using Ogurets, Flutter for Mobile, Flutter for Web, the OpenAPi generator for Dart and Java,
 a Java server, e2e tests for api, and a video and documentation series.
 
+This uses Java 11+.
+
 == authors
 
 - _Irina Southwell (nee Капрельянц Ирина)_, Principal Engineer (https://www.linkedin.com/in/irina-southwell-9727a422/)
@@ -21,3 +23,29 @@ api.
 - example_mobile_client - holds the flutter client
 - dart_e2e - holds the e2e client
 - dart_api - holds the generated code for the e2e client
+
+==== building the java server
+
+You can build it as a Docker image:
+
+----
+mvn -Pdocker clean package
+docker import target/jib-image.tar
+docker-compose up
+----
+
+It will be running on port 8076, and you can check this with a curl:
+
+----
+curl -v http://localhost:8076/counter
+----
+
+There are a few deliberate design decisions here, it is only an example and certainly not one we would run
+in a production scenario. It is missing:
+
+- any tests
+- an api lifecycle to shutdown the server
+- healthcheck endpoints
+- proper jersey configuration for exception handling, bean validation, logging and tracing
+- proper logging infrastructure that is k8s aware
+

@@ -1,10 +1,6 @@
 package com.bluetrainsoftware.example.server;
 
-import cd.connect.jersey.JerseyHttp2Server;
-import cd.connect.jersey.common.CommonConfiguration;
-import cd.connect.jersey.common.JerseyExceptionMapper;
-import cd.connect.lifecycle.ApplicationLifecycleManager;
-import cd.connect.lifecycle.LifecycleStatus;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
@@ -28,13 +24,12 @@ public class Application {
         }
       });
 
-    CommonConfiguration.basic(config);
+    GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config, true);
 
-    JerseyHttp2Server.start(config, BASE_URI);
+    // we are missing server lifecycle, shutdown hooks etc you would normally expect in a k8s cluster
+    // and well behaved app
 
-    log.info("Application started. (HTTP/2 enabled!) -> {}", BASE_URI);
-
-    ApplicationLifecycleManager.updateStatus(LifecycleStatus.STARTED);
+    log.info("Application started. -> {}", BASE_URI);
 
     Thread.currentThread().join();
   }

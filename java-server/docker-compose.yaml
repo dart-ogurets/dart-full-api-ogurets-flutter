@@ -1,0 +1,7 @@
+version: '3.6'
+services:
+  server:
+    image: dart-ogurets/server:latest
+    container_name: server
+    ports:
+      - 8076:8076
