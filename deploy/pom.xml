@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.dartfull</groupId>
+  <artifactId>deploy-container</artifactId>
+  <version>1.1-SNAPSHOT</version>
+  <name>deploy-container</name>
+
+  <description>
+    Deploy container
+  </description>
+
+  <properties>
+    <build.version>19</build.version>
+    <build.pr>My PR</build.pr>
+    <build.sha>sha</build.sha>
+    <build.branch>master</build.branch>
+    <build.namespace>ci</build.namespace>
+    <build.cluster>dartfull-dev</build.cluster>
+    <docker.repository>gcr.io</docker.repository>
+  </properties>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>cd.connect.pipeline</groupId>
+            <artifactId>docker-manifest-collectosaur-plugin</artifactId>
+            <version>1.3-SNAPSHOT</version>
+            <executions>
+              <execution>
+                <id>collect</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>deployosaur</goal>
+                </goals>
+                <configuration>
+                  <dockerRegistry>gcr.io</dockerRegistry>
+                  <deployContainerImageName>dartfull/deploy</deployContainerImageName>
+                  <dockerRegistryBearerToken>@${project.basedir}/../docker-bearer-token.txt</dockerRegistryBearerToken>
+                  <targetNamespace>${build.namespace}</targetNamespace>
+                  <targetCluster>${build.cluster}</targetCluster>
+                  <inputManifestFile>${project.basedir}/../target/connect-manifest.json</inputManifestFile>
+                  <outputYamlManifestFile>src/main/resources/manifest.yaml</outputYamlManifestFile>
+                  <outputJsonManifestFile>src/main/resources/manifest.json</outputJsonManifestFile>
+                  <pullRequest>${build.pr}</pullRequest>
+                  <buildNumber>${build.version}</buildNumber>
+                  <deployContainerTagOutputFile>deploy-tag.txt</deployContainerTagOutputFile>
+                  <sha>${build.sha}</sha>
+                  <branch>${build.branch}</branch>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>com.google.cloud.tools</groupId>
+            <artifactId>jib-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <executions>
+              <execution>
+                <id>docker-build</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <allowInsecureRegistries>false</allowInsecureRegistries>
+              <from>
+                <image>gcr.io/dartfull/basedeploy:1.1</image>
+              </from>
+              <to>
+                <image>${docker.repository}/dartfull/deploy:${collectosaurTimestamp}.${build.version}</image>
+              </to>
+              <container>
+                <entrypoint>/bin/sh</entrypoint>
+                <args>
+                  <arg>-c</arg>
+                  <arg>chmod +x /app/resources/deploy.sh &amp;&amp; /app/resources/deploy.sh</arg>
+                </args>
+                <labels>
+                  <buildSha>${collectosaurSha}</buildSha>
+                  <buildManifest>${collectosaurManifest}</buildManifest>
+                  <buildBranch>${collectosaurBranch}</buildBranch>
+                </labels>
+              </container>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>cd.connect.pipeline</groupId>
+            <artifactId>docker-manifest-collectosaur-plugin</artifactId>
+            <version>1.3-SNAPSHOT</version>
+            <executions>
+              <execution>
+                <id>retag</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>retagosaur</goal>
+                </goals>
+                <configuration>
+                  <dockerRegistry>gcr.io</dockerRegistry>
+                  <deployContainerImageName>dartfull/deploy</deployContainerImageName>
+                  <deployContainerTag>@deploy-tag.txt</deployContainerTag>
+                  <dockerRegistryBearerToken>@${project.basedir}/../docker-bearer-token.txt</dockerRegistryBearerToken>
+                  <targetNamespace>${build.namespace}</targetNamespace>
+                  <targetCluster>${build.cluster}</targetCluster>
+                  <mergeSha>123344</mergeSha>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+</project>
