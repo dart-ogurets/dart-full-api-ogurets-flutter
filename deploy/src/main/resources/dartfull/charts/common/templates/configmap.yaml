@@ -19,7 +19,6 @@ data:
         </Appenders>
 
         <Loggers>
-            <AsyncLogger name="io.featurehub" level="debug"/>
             <AsyncLogger name="io.ebean.SQL" level="info"/>
             <AsyncLogger name="io.ebean.TXN" level="info"/>
             <AsyncLogger name="io.ebean.SUM" level="info"/>

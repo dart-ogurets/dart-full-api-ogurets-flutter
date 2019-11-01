@@ -1,6 +1,6 @@
 containerPort: 8080
 image:
-  prefix: gcr.io/featurehub/mr
+  prefix: gcr.io/oguretsexample/dart-server:latest
   tag: 1.0
 resources:
   requests:
