@@ -11,7 +11,7 @@ dependencies:
 #    path: /Users/richard/projects/dart/ogurets
   counterapi:
     path: ../dart_api
-  openapi_dart_common: ^1.0.1
+  openapi_dart_common: ^2.0.0
   collection: ^1.14.11
 dev_dependencies:
   ogurets: ^3.1.5
