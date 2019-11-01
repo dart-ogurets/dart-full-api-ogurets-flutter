@@ -29,7 +29,7 @@ You can build it as a Docker image:
 
 ----
 mvn -Pdocker clean package
-docker import target/jib-image.tar
+docker load -i target/jib-image.tar
 docker-compose up
 ----
 

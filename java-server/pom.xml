@@ -190,7 +190,7 @@
           <plugin>
             <groupId>com.google.cloud.tools</groupId>
             <artifactId>jib-maven-plugin</artifactId>
-            <version>1.4.0</version>
+            <version>1.7.0</version>
             <executions>
               <execution>
                 <id>docker-build</id>
@@ -203,7 +203,7 @@
             <configuration>
               <allowInsecureRegistries>false</allowInsecureRegistries>
               <from>
-                <image>openjdk:11.0.3-jdk-slim-stretch</image>
+                <image>adoptopenjdk:11-jre-hotspot</image>
               </from>
               <to>
                 <image>dart-ogurets/${project.artifactId}</image>
@@ -212,7 +212,6 @@
                 <mainClass>com.bluetrainsoftware.example.server.Application</mainClass>
                 <jvmFlags>
                   <jvmFlag>--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED</jvmFlag>
-                  <jvmFlag>-Dio.netty.tryReflectionSetAccessible=true</jvmFlag>
                   <jvmFlag>--add-opens=java.base/java.nio=ALL-UNNAMED</jvmFlag>
                 </jvmFlags>
                 <ports>
