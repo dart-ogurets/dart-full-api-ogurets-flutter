@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:counterapi/api.dart';
+import 'package:example_mobile_client/common.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
-import 'common.dart';
 
 class CounterBloc {
   final Common common;
