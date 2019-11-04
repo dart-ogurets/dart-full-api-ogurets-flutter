@@ -5,26 +5,22 @@ import 'package:flutter/material.dart';
 import 'counter_bloc.dart';
 
 void main() {
-
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
-  final common= Common();
+  final common = Common();
 
   @override
   Widget build(BuildContext context) {
-
     final _bloc = CounterBloc(common);
 
     return CounterBlocContext(
-      child: MaterialApp(
-        title: 'Counter App',
-        home: MyHomePage(title: 'Counter App Home Page'),
-      ),
-      bloc: _bloc
-    );
+        child: MaterialApp(
+          title: 'Counter App',
+          home: MyHomePage(title: 'Dick counter'),
+        ),
+        bloc: _bloc);
   }
 }
 
@@ -48,7 +44,7 @@ class MyHomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'You have pushed the button this many times:',
+                        'You have been a dick this many times:',
                       ),
                       Text(
                         '${snapshot.data.amount.toString()}',
@@ -86,11 +82,8 @@ class MyHomePage extends StatelessWidget {
 class CounterBlocContext extends InheritedWidget {
   final CounterBloc bloc;
 
-  CounterBlocContext({Key key,
-    @required this.bloc,
-    @required Widget child})
-      :
-        assert(bloc != null),
+  CounterBlocContext({Key key, @required this.bloc, @required Widget child})
+      : assert(bloc != null),
         assert(child != null),
         super(key: key, child: child);
 

@@ -4,7 +4,6 @@ import 'package:rxdart/rxdart.dart' as rxdart;
 import 'common.dart';
 
 class CounterBloc {
-
   final Common common;
 
   Counter _counter;
@@ -24,16 +23,15 @@ class CounterBloc {
     _counterStream.close();
   }
 
-  getCounter() async{
+  getCounter() async {
     _counter = await common.counterServiceApi.getCounter();
-    if(_counter == null) {
+    if (_counter == null) {
       _counter = new Counter()..amount = 0;
     }
     _counterStream.add(_counter);
   }
 
-
-  counterInc() async{
+  counterInc() async {
     Counter cnt = new Counter()..amount = 1;
     _counter = await common.counterServiceApi.incCounter(cnt);
     _counterStream.add(_counter);
@@ -43,5 +41,4 @@ class CounterBloc {
     _counter = await common.counterServiceApi.resetCounter();
     _counterStream.add(_counter);
   }
-
 }
