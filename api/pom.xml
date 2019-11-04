@@ -13,25 +13,20 @@
   </description>
 
   <dependencies>
-    <dependency>
-      <groupId>io.featurehub.mr</groupId>
-      <artifactId>mr-api</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
   </dependencies>
 
   <build>
+    <finalName>app</finalName>
     <plugins>
       <plugin>
-        <groupId>io.repaint.maven</groupId>
-        <artifactId>tiles-maven-plugin</artifactId>
-        <version>2.10</version>
-        <extensions>true</extensions>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
         <configuration>
-          <filtering>false</filtering>
-          <tiles>
-            <tile>io.featurehub.tiles:tile-java:[1.1,2)</tile>
-          </tiles>
+          <release>11</release>
+          <source>11</source>
+          <target>11</target>
+          <executable>javac11</executable>
+          <useIncrementalCompilation>false</useIncrementalCompilation>
         </configuration>
       </plugin>
     </plugins>
