@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return CounterBlocContext(
         child: MaterialApp(
           title: 'Counter App',
-          home: MyHomePage(title: 'Dick counter'),
+        home: MyHomePage(title: 'Counter App Home Page'),
         ),
         bloc: _bloc);
   }
@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'You have been a dick this many times:',
+                        'You have pushed the button this many times:',
                       ),
                       Text(
                         '${snapshot.data.amount.toString()}',
