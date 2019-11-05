@@ -171,16 +171,16 @@ packages:
   ogurets:
     dependency: "direct main"
     description:
-      path: "../../Ogurets"
-      relative: true
-    source: path
+      name: ogurets
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "3.1.7"
   ogurets_flutter:
     dependency: "direct main"
     description:
-      path: "../../OguretsFlutter"
-      relative: true
-    source: path
+      name: ogurets_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.2.2"
   openapi_dart_common:
     dependency: "direct main"
