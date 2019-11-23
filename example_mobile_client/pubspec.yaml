@@ -22,7 +22,6 @@ dependencies:
   rxdart: 0.22.0
   counterapi:
     path: ../dart_api
-  openapi_dart_common: ^2.0.0
   ogurets: ^3.1.5
 #    path: ../../Ogurets
   ogurets_flutter: ^1.2.2

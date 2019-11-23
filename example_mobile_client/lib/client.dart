@@ -1,14 +1,16 @@
 import 'package:openapi_dart_common/openapi.dart';
 import 'package:counterapi/api.dart';
 
-class Common {
+class Client {
   ApiClient _apiClient;
-  CounterServiceApi counterServiceApi;
+  CounterServiceApi _counterServiceApi;
 
-  Common() {
+  CounterServiceApi get counterServiceApi => _counterServiceApi;
+
+  Client() {
     _apiClient = ApiClient(
         basePath: "http://localhost:8076",
         deserializeDelegate: LocalApiClient());
-    counterServiceApi = CounterServiceApi(_apiClient);
+    _counterServiceApi = CounterServiceApi(_apiClient);
   }
 }

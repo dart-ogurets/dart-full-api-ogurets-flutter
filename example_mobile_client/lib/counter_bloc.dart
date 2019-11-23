@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'package:counterapi/api.dart';
-import 'package:example_mobile_client/common.dart';
+import 'package:example_mobile_client/client.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
 
 class CounterBloc {
-  final Common common;
+  final Client client;
 
   Counter _counter;
   final _counterStream = rxdart.BehaviorSubject<Counter>();
   Stream<Counter> get counter => _counterStream.stream;
 
   //constructor
-  CounterBloc(this.common) {
+  CounterBloc(this.client) {
     initialise();
   }
 
@@ -24,7 +24,7 @@ class CounterBloc {
   }
 
   getCounter() async {
-    _counter = await common.counterServiceApi.getCounter();
+    _counter = await client.counterServiceApi.getCounter();
     if (_counter == null) {
       _counter = new Counter()..amount = 0;
     }
@@ -33,12 +33,12 @@ class CounterBloc {
 
   counterInc() async {
     Counter cnt = new Counter()..amount = 1;
-    _counter = await common.counterServiceApi.incCounter(cnt);
+    _counter = await client.counterServiceApi.incCounter(cnt);
     _counterStream.add(_counter);
   }
 
   counterReset() async {
-    _counter = await common.counterServiceApi.resetCounter();
+    _counter = await client.counterServiceApi.resetCounter();
     _counterStream.add(_counter);
   }
 }

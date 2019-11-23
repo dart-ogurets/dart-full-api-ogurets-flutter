@@ -42,7 +42,6 @@ curl -v http://localhost:8076/counter
 There are a few deliberate design decisions here, it is only an example and certainly not one we would run
 in a production scenario. It is missing:
 
-- any tests
 - an api lifecycle to shutdown the server
 - healthcheck endpoints
 - proper jersey configuration for exception handling, bean validation, logging and tracing

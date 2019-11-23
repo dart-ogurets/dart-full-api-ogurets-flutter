@@ -1,7 +1,6 @@
 import 'package:counterapi/api.dart';
-import 'package:example_mobile_client/common.dart';
+import 'package:example_mobile_client/client.dart';
 import 'package:flutter/material.dart';
-
 import 'counter_bloc.dart';
 
 void main() {
@@ -9,11 +8,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final common = Common();
+  final client = Client();
 
   @override
   Widget build(BuildContext context) {
-    final _bloc = CounterBloc(common);
+    final _bloc = CounterBloc(client);
 
     return CounterBlocContext(
         child: MaterialApp(
@@ -57,7 +56,7 @@ class MyHomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            // Provide a Key to this the button. This allows us to find this
+            // Provide a Key to the button. This allows us to find this
             // specific button and tap it inside the test suite.
             key: Key('increment'),
             onPressed: () => bloc.counterInc(),
@@ -66,7 +65,7 @@ class MyHomePage extends StatelessWidget {
           ),
           SizedBox(width: 10),
           FloatingActionButton(
-            // Provide a Key to this the button. This allows us to find this
+            // Provide a Key to the button. This allows us to find this
             // specific button and tap it inside the test suite.
             key: Key('reset'),
             onPressed: () => bloc.counterReset(),
