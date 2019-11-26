@@ -1,8 +1,8 @@
 = A Working Example
 
-Once completed, this is intended to be a full working example
-of using Ogurets, Flutter for Mobile, Flutter for Web, the OpenAPi generator for Dart and Java,
-a Java server, e2e tests for api, and a video and documentation series.
+A full working example
+of using Ogurets, Flutter for Mobile, the OpenAPi generator for Dart and Java,
+a Java server, e2e tests for api and Flutter app and documentation.
 
 image::counterapp.png[Counter app,200,450]
 
@@ -19,6 +19,7 @@ Docker
 == authors
 
 - _Richard Vowles_, Software Developer (https://www.linkedin.com/in/richard-vowles-72035193/)
+- _Irina Southwell_ (https://nz.linkedin.com/in/irina-southwell-9727a422)
 
 == Counter Example
 
