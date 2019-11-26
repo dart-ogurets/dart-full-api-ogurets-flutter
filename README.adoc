@@ -4,6 +4,8 @@ Once completed, this is intended to be a full working example
 of using Ogurets, Flutter for Mobile, Flutter for Web, the OpenAPi generator for Dart and Java,
 a Java server, e2e tests for api, and a video and documentation series.
 
+image::counterapp.png[Counter app,200,450]
+
 == Prerequisites: 
 
 Java 11+.
