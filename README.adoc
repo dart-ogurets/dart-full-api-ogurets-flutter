@@ -4,12 +4,14 @@ Once completed, this is intended to be a full working example
 of using Ogurets, Flutter for Mobile, Flutter for Web, the OpenAPi generator for Dart and Java,
 a Java server, e2e tests for api, and a video and documentation series.
 
-==
-Prerequisites: 
+== Prerequisites: 
 
 Java 11+.
+
 Maven (optional if running mvn commands)
+
 Flutter SDK
+
 Docker 
 
 == authors
@@ -23,10 +25,10 @@ api.
 
 == folders
 
-- api - holds the OpenAPI specification for the OpenAPI.
+- api - holds the OpenAPI specification yaml file for the back-end Counter service.
 - java-server - holds the java server code
 - example_mobile_client - holds the flutter client
-- dart_e2e - holds the e2e tests for the back-end service written in Dart and using Ogurets - Cucumber for Dart plugin
+- dart_e2e - holds the e2e tests for the back-end service written in Dart and using Ogurets - Cucumber for Dart package
 - dart_api - holds the generated code for the e2e client
 
 ==== Building the java server
@@ -87,6 +89,8 @@ dart --enable-asserts tests/ogurets_run.dart
 ----
 
 === Running Flutter mobile e2e tests with Ogurets - Cucumber for Dart
+
+Launch iOS or Android emulator
 
 ----
 cd example_mobile_client
