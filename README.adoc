@@ -29,7 +29,7 @@ api.
 - dart_e2e - holds the e2e tests for the back-end service written in Dart and using Ogurets - Cucumber for Dart plugin
 - dart_api - holds the generated code for the e2e client
 
-==== building the java server
+==== Building the java server
 
 You can build it as a Docker image:
 
@@ -46,7 +46,7 @@ It will be running on port 8076, and you can check this with a curl:
 curl -v http://localhost:8076/counter
 ----
 
-=== generate client API code to be used by Flutter app and back-end e2e tests
+=== Generate client API code to be used by Flutter app and back-end e2e tests
 
 ----
 cd dart_api 
@@ -70,7 +70,7 @@ to install dart dependencies run
 pub get
 ----
 
-=== building and running Flutter app
+=== Building and running Flutter app
 
 ----
 cd example_mobile_client
@@ -78,7 +78,7 @@ pub get
 flutter run
 ----
 
-=== building back-end e2e tests with Ogurets - Cucumber for Dart
+=== Running back-end e2e tests with Ogurets - Cucumber for Dart
 
 ----
 cd dart_e2e
@@ -86,7 +86,7 @@ pub get
 dart --enable-asserts tests/ogurets_run.dart
 ----
 
-=== building Flutter mobile e2e tests with Ogurets - Cucumber for Dart
+=== Running Flutter mobile e2e tests with Ogurets - Cucumber for Dart
 
 ----
 cd example_mobile_client
