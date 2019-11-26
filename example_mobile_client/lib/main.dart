@@ -39,7 +39,8 @@ class MyHomePage extends StatelessWidget {
           child: StreamBuilder(
               stream: bloc.counter,
               builder: (BuildContext context, AsyncSnapshot<Counter> snapshot) {
-                return Column(
+                if(snapshot.hasData) {
+                  return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
@@ -48,10 +49,16 @@ class MyHomePage extends StatelessWidget {
                       Text(
                         '${snapshot.data.amount.toString()}',
                         key: Key('counter'),
-                        style: Theme.of(context).textTheme.display1,
+                        style: Theme
+                          .of(context)
+                          .textTheme
+                          .display1,
                       )
                     ]);
-              })),
+                 }
+              return Container();
+              })
+    ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
